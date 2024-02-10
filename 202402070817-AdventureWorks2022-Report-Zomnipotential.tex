@@ -1,0 +1,104 @@
+\documentclass[10pt]{article}
+
+% For text sizes
+\usepackage[left=1in,right=1in,top=0.8in,bottom=0.9in]{geometry}
+
+% For figures
+\usepackage{graphicx}
+\usepackage{tikz}
+
+% For vertical space between items
+\usepackage{enumitem}
+
+% Used to show Python code 'verbatim'
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+
+% For href
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=red,
+    citecolor=green,
+    urlbordercolor={0 0 1},
+}
+
+\begin{document}
+
+% Used to show Python code 'verbatim'
+\lstset{language=Python, 
+        basicstyle=\ttfamily\footnotesize, 
+        keywordstyle=\color{keywords},
+        commentstyle=\color{green},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{comments},
+        keywords=[2]{pow},
+        keywordstyle=[2]{\color{orange}},
+}
+% Python code illustration ends here
+
+\title{Databas från CSV-fil\footnote{\footnotesize{\href{https://github.com/Zomnipotential/Power\_BI\_Quiz_I}{https://github.com/Zomnipotential/Power\_BI\_Quiz\_I}}}}
+\author{Matthew H. Motallebipour}
+\date{\today}
+\maketitle
+
+\section{Introduktion}
+
+I denna rapport kommer tabeller att annoteras med \textbf{fet stil} kolumner med \emph{kursiv text}.
+
+\subsection{Databasen}
+
+Databasen, som presenterats i form av csv-filer är extraherade från en huvuddatabas under namnet AdventureWorks2022 och innehåller 6 tabeller som är hopkopplade i form av 3 grupper
+\begin{enumerate}
+	\item \textbf{DimProduct}, \textbf{FactInternetSale}, och \textbf{DimSalesTerritory}
+		\begin{itemize}
+			\item \textbf{FactInternetSale} som är kopplad till \textbf{DimSalesTerritory} genom \emph{SalesTerritoryKey}
+			\item \textbf{FactInternetSale} som är kopplad till \textbf{DimProduct} genom \emph{ProductKey}
+		\end{itemize}
+	\item \textbf{DimProductSubcategory} och \textbf{ProductCategory} genom \emph{ProductCategoryKey}
+	\item \textbf{DimDate} är en ensamstående tabell
+\end{enumerate}
+
+För att koppla ihop samtliga tabeller i en enda grupp, en så kallad data modell, söker vi och hittar \emph{ProductSubcategoryKey} som gemensamt nyckelord mellan \textbf{DimProduct} och \textbf{DimProductSubcategory}, samt \emph{DateKey} i \textbf{FactInternetSale} och \textbf{DimDate}. Resultatet ser ut som följer i bilden överst på nästa sida och påminner om den så kallade datamodellen snöflinga.
+
+\subsection{Rapporten}
+
+Rapporten är på begäran bestående av tre sidor, där den första sidan innehåller bolagets logotyp samt data i stora drag, den andra sidan innehåller intressanta trender som vi hittade i vår data, och den tredje sidan visar värdet av den totala försäljningen delad över olika regioner i världen.
+
+\subsubsection{Första sidan -- Introduction}
+
+Visar företagets logotyp och hur bolaget har presterat under hela sin historia
+
+\begin{itemize}
+	\item Den totala levererade beställningar Count of \emph{SalesAmount},
+	\item Deras totala värde Sum of \emph{SalesAmount},
+	\item Den mest sålda detaljprodukten Top Selling Category, som är en Measure i \textbf{FactInternetSale}. I detta fall är measure beräknad som den största utav de aggregerade värdena för alla enskilda, unika detaljprodukter i \emph{EnglishProductSubCategoryName}.
+	\item Den minst sålda detaljprodukten Least Selling Category, som också är en Measure i \textbf{FactInternetSale} och beräknad på samma sätt som ovan, där det minsta värdet är använt.
+	\item Därefter följer \emph{SalesAmount} för \emph{ShipDate}, \emph{DueDate}, och \emph{OrderDate}.
+\end{itemize}
+
+\subsubsection{Andra sidan -- Sales Trend}
+
+Vi har försökt titta på den cykliska trenden i data, nämligen hur de olika månaderna påverkar försäljningen i stort.
+
+\begin{itemize}
+	\item Överst på sidan presenteras den totala försäljningens värde under alla året bolaget har opererat.
+	\item Under denna, och på höger sidan ser vi en uppdelning av samma historik, en uppdelning av de tre huvudprodukterna, accessories, bikes och clothing.
+	\item Mittemot dessa kan man konstatera den cykliska försäljningen månadsvis. Detta visar att logiskt nog ökar försäljningen från januari fram till och med juni och därefter faller försäljningen tills den återigen ökar avsevärt under december månad, speciellt med tanke på julhandeln, då människor förbereder sig inför den stundande varma perioden.
+\end{itemize}
+
+\subsubsection{Tredje sidan -- Sales Amounts}
+
+Här visas den totala försäljningen per land, region, och kontinent i en interaktiv karta. För att överskådliggöra försäljningen för har även värden för de tre kontinenterna markerats som tre kort på topologiskt relevanta platser runtom kartan.
+
+\subsection{Övrigt}
+
+En mörkare färg har valts för hela rapporten för att undvika alltför utstrålning av ljus som kan kännas besvärligt för ögat.
+
+\end{document}
