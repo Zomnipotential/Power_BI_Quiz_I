@@ -83,6 +83,8 @@ Visar företagets logotyp och hur bolaget har presterat under hela sin historia
 	\item Därefter följer \emph{SalesAmount} för \emph{ShipDate}, \emph{DueDate}, och \emph{OrderDate}.
 \end{itemize}
 
+Avancerade 
+
 \subsubsection{Andra sidan -- Sales Trend}
 
 Vi har försökt titta på den cykliska trenden i data, nämligen hur de olika månaderna påverkar försäljningen i stort.
@@ -99,6 +101,14 @@ Här visas den totala försäljningen per land, region, och kontinent i en inter
 
 \subsection{Övrigt}
 
-En mörkare färg har valts för hela rapporten för att undvika alltför utstrålning av ljus som kan kännas besvärligt för ögat.
+En mörkare färg har valts för hela rapporten för att undvika alltför mycket utstrålning av ljus som kan kännas besvärligt för ögat.
+
+Det finns delar och uppgifter i modellen som egentligen skulle implementeras i den andra uppgiften och som räknas som ''avancerade'' men jag tyckte att dessa var oundvikliga
+
+\begin{itemize}
+	\item På första sidan använde jag mig av DAX formuleringar för att beräkna Total SalesAmount och därifrån hitta Top Selling Subcategory samt Least Selling Subcategory, dvs de varor som sålde mest samt minst utav alla varor som bolaget producerar.
+	\item På andra sidan använde jag mig av Drill Down för att visualisera hur Sold Items Per Category varierade månadsvis, kvartalsvis, eller årsvis.
+	\item På tredje sidan har jag ''installerat'' en klickbar karta som också använder sig av Drill Down för att visa försäljningssiffrorna i olika länder, regioner och kontinenter.
+\end{itemize}
 
 \end{document}
